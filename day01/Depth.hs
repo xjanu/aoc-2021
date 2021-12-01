@@ -16,7 +16,11 @@ count ls =
 
 -- Calculate the sliding window
 sliding :: [Integer] -> [Integer]
-sliding _ = [] -- TODO
+sliding (x:y:ls) =
+    third $ foldl fun (x, y, []) ls
+    where fun (x, y, ls) z = (y, z, ls ++ [x + y + z])
+          third (_, _, x) = x
+sliding _ = []
 
 -- Read file and process input
 depth :: Int -> FilePath -> IO ()
