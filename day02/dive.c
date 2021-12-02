@@ -13,6 +13,8 @@ struct coords parseline(char *line)
 {
 	struct coords ret = {0, 0};
 	char *rest;
+
+	// Check if line begins with a valid direction, separate the rest of the line
 	if (strncmp(line, "forward ", 8) == 0) {
 		rest = line + 8;
 	} else if (strncmp(line, "down ", 5) == 0) {
@@ -24,11 +26,14 @@ struct coords parseline(char *line)
 		return ret;
 	}
 
+	// Parse distance
 	long i = strtol(rest, NULL, 10);
 	if (i > INT_MAX || i < 0) {
 		fprintf(stderr, "Parse error: int out of range: '%ld'\n", i);
 		return ret;
 	}
+
+	// Fill coords based on direction and distance
 	switch (line[0]) {
 	case 'f':
 		ret.fore = i;
@@ -52,6 +57,7 @@ int dive(FILE *fp)
 	char *line = NULL;
 	size_t n = 0;
 
+	// Parse each line and modify coords
 	while (getline(&line, &n, fp) != -1) {
 		struct coords delta = parseline(line);
 		fore += delta.fore;
