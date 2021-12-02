@@ -12,7 +12,7 @@ char usage[] =
 
 struct coords {
 	int fore;
-	int depth;
+	int depth; // For part 2, this is actually change in aim
 };
 
 struct coords parseline(char *line)
@@ -57,17 +57,23 @@ struct coords parseline(char *line)
 	return ret;
 }
 
-int dive(FILE *fp)
+int dive(FILE *fp, int part)
 {
-	int fore = 0, depth = 0;
+	int fore = 0, depth = 0, aim = 0;
 	char *line = NULL;
 	size_t n = 0;
 
 	// Parse each line and modify coords
 	while (getline(&line, &n, fp) != -1) {
 		struct coords delta = parseline(line);
-		fore += delta.fore;
-		depth += delta.depth;
+		if (part == 1) {
+	            fore += delta.fore;
+                depth += delta.depth;
+		} else {
+			aim += delta.depth;
+			fore += delta.fore;
+			depth += aim * delta.fore;
+		}
 		if (depth < 0) {
 			depth = 0;
 		}
@@ -84,8 +90,6 @@ int main(int argc, char* argv[])
 {
 	char *filename;
 	int part;
-
-	printf("%d\n", argc);
 
 	// Parse cmdline arguments
 	if (argc <= 1 || argc > 3) {
@@ -112,7 +116,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	printf("%d\n", dive(fp));
+	printf("%d\n", dive(fp, part));
 
 	fclose(fp);
 
