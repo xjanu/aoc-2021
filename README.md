@@ -12,3 +12,11 @@ For more info, see [The Advent of Code website](https://adventofcode.com/)
 | Part One: | `./depth 1 input`       |
 | Part Two: | `./depth 2 input`       |
 | Usage:    | `./depth`               |
+
+## Day 2
+| Language: | C                          |
+| --------- | -------------------------- |
+| Build:    | `gcc -Wall dive.c -o dive` |
+| Part One: | `./dive 1 input`           |
+| Part Two: | `./dive 2 input`           |
+| Usage:    | `./dive`                   |
