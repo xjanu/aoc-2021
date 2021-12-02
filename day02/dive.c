@@ -4,6 +4,12 @@
 #include <stdlib.h> // strtol
 #include <string.h> // strncmp
 
+char usage[] =
+	"Usage: %s [<part>] <filename>\n"
+	"Where <part> is either 1 or 2, depending on the part of the challenge,\n"
+    "             default value is 1.\n"
+    "      <filename> is the path to the puzzle input file.\n";
+
 struct coords {
 	int fore;
 	int depth;
@@ -76,7 +82,31 @@ int dive(FILE *fp)
 
 int main(int argc, char* argv[])
 {
-	FILE *fp = fopen("input", "r");
+	char *filename;
+	int part;
+
+	printf("%d\n", argc);
+
+	// Parse cmdline arguments
+	if (argc <= 1 || argc > 3) {
+		fprintf(stderr, usage, argv[0]);
+		return 2;
+	} else if (argc == 2) {
+		part = 1;
+		filename = argv[1];
+	} else {
+		if (strcmp(argv[1], "1") == 0) {
+			part = 1;
+		} else if (strcmp(argv[1], "2") == 0) {
+			part = 2;
+		} else {
+			fprintf(stderr, usage, argv[0]);
+			return 2;
+		}
+		filename = argv[2];
+	}
+
+	FILE *fp = fopen(filename, "r");
 	if (fp == NULL) {
 		perror("fopen");
 		return 1;
