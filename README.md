@@ -21,7 +21,7 @@ For more info, see [The Advent of Code website](https://adventofcode.com/)
 | Part Two: | `./dive 2 input`           |
 | Usage:    | `./dive`                   |
 
-## Day š
+## Day 3
 | Language: | Python                     |
 | --------- | -------------------------- |
 | Part One: | `./diagnostics 1 input`    |
