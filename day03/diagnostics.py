@@ -37,8 +37,11 @@ def count_bits(lines):
 # First part
 def part_1(lines):
     mcb, lcb = count_bits(lines)
+
     gamma = int(mcb, base=2)
     epsilon = int(lcb, base=2)
+
+    # Print the power consumption
     print(gamma * epsilon)
 
 # Second part
@@ -58,6 +61,7 @@ def part_2(lines):
         if len(co2_lines) == 1:
             co2 = int(co2_lines[0], base=2)
 
+    # Print the oxygen generator and CO2 scrubber rating
     print(oxy * co2)
 
 if __name__ == "__main__":
@@ -66,6 +70,7 @@ if __name__ == "__main__":
     file = argv[-1]
     if len(argv) <= 1 or len(argv) > 3:
         print(usage, file=stderr)
+        exit(2)
     elif len(argv) == 3:
         part = int(argv[1])
 
