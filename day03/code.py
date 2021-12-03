@@ -32,28 +32,16 @@ def count_bits(lines):
 
     return mcb, lcb
 
-if __name__ == "__main__":
-    part = 1
-    file = argv[-1]
-    if len(argv) <= 1 or len(argv) > 3:
-        print(usage, file=stderr)
-    elif len(argv) == 3:
-        part = int(argv[1])
-        if part not in [1, 2]:
-            print(usage, file=stderr)
-            exit(2)
-
-    lines = parse_input(file)
+def part_1(lines):
     mcb, lcb = count_bits(lines)
     gamma = int(mcb, base=2)
     epsilon = int(lcb, base=2)
+    print(gamma * epsilon)
 
-    if part == 1:
-        print(gamma * epsilon)
-        exit(0)
-
+def part_2(lines):
     oxy_lines = lines.copy()
     co2_lines = lines.copy()
+
     for bit in range(len(lines[0])):
         mcb, _ = count_bits(oxy_lines)
         _, lcb = count_bits(co2_lines)
@@ -67,3 +55,21 @@ if __name__ == "__main__":
             co2 = int(co2_lines[0], base=2)
 
     print(oxy * co2)
+
+if __name__ == "__main__":
+    part = 1
+    file = argv[-1]
+    if len(argv) <= 1 or len(argv) > 3:
+        print(usage, file=stderr)
+    elif len(argv) == 3:
+        part = int(argv[1])
+
+    lines = parse_input(file)
+
+    if part == 1:
+        part_1(lines)
+    elif part == 2:
+        part_2(lines)
+    else:
+        print(usage, file=stderr)
+        exit(2)
