@@ -24,6 +24,6 @@ For more info, see [The Advent of Code website](https://adventofcode.com/)
 ## Day 3
 | Language: | Python                     |
 | --------- | -------------------------- |
-| Part One: | `./diagnostics 1 input`    |
-| Part Two: | `./diagnostics 2 input`    |
-| Usage:    | `./diagnostics`            |
+| Part One: | `./diagnostics.py 1 input` |
+| Part Two: | `./diagnostics.py 2 input` |
+| Usage:    | `./diagnostics.py`         |
