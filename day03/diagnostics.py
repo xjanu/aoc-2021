@@ -19,10 +19,10 @@ def count_bits(lines):
         return "", ""
 
     count1 = [0 for i in range(len(lines[0]))]
-    count0 = count.copy()
+    count0 = count1.copy()
 
     for line in lines:
-        for i in range(len(count)):
+        for i in range(len(count1)):
             count1[i] += 1 if line[i] == '1' else 0
             count0[i] += 1 if line[i] == '0' else 0
 
