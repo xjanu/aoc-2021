@@ -6,12 +6,12 @@ Advent of Code 2021
 For more info, see [The Advent of Code website](https://adventofcode.com/)
 
 ## Day 1
-| Language: | Haskell                 |
-| --------- | ----------------------- |
-| Build:    | `ghc -o depth Depth.hs` |
-| Part One: | `./depth 1 input`       |
-| Part Two: | `./depth 2 input`       |
-| Usage:    | `./depth`               |
+| Language: | Haskell                    |
+| --------- | -------------------------- |
+| Build:    | `ghc -o depth Depth.hs`    |
+| Part One: | `./depth 1 input`          |
+| Part Two: | `./depth 2 input`          |
+| Usage:    | `./depth`                  |
 
 ## Day 2
 | Language: | C                          |
@@ -20,3 +20,10 @@ For more info, see [The Advent of Code website](https://adventofcode.com/)
 | Part One: | `./dive 1 input`           |
 | Part Two: | `./dive 2 input`           |
 | Usage:    | `./dive`                   |
+
+## Day š
+| Language: | Python                     |
+| --------- | -------------------------- |
+| Part One: | `./diagnostics 1 input`    |
+| Part Two: | `./diagnostics 2 input`    |
+| Usage:    | `./diagnostics`            |
