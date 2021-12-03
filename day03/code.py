@@ -9,7 +9,7 @@ Where <part> is either 1 or 2, depending on the part of the challenge,
 
 def parse_line(line):
     # TODO
-    return int(line)
+    return line
 
 def parse_input(file):
     with open(file, "r") as f:
@@ -27,5 +27,18 @@ if __name__ == "__main__":
             print(usage, file=stderr)
             exit(2)
 
-    # TODO
-    print(parse_input(file))
+    line = parse_input(file)[0]
+    count = [0 for i in range(len(line))]
+    count0 = [0 for i in range(len(line))]
+    for line in parse_input(file):
+        for i in range(len(count)):
+            count[i] += 1 if line[i] == '1' else 0
+            count0[i] += 1 if line[i] == '0' else 0
+    mcb = ""
+    lcb = ""
+    for i in range(len(count)):
+        mcb += "1" if count[i] > count0[i] else "0"
+        lcb += "1" if count[i] < count0[i] else "0"
+    gamma = int("".join(list(map(str, mcb))), base=2)
+    epsilon = int("".join(list(map(str, lcb))), base=2)
+    print(gamma, epsilon, gamma * epsilon)
