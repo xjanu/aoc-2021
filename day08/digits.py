@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# A lookup table of possible digits based on number of segments
 lookup = {
     2: [1],
     3: [7],
@@ -9,6 +10,7 @@ lookup = {
     7: [8]
 }
 
+# A lookup table from digit to segment sequence
 lookup2 = {
     1 : "cf",
     2 : "acdeg",
@@ -22,14 +24,17 @@ lookup2 = {
     0 : "abcefg"
 }
 
+# Above, but reversed.
 rev_lookup = {v: k for k, v in lookup2.items()}
 
+# Return True if segments mapping is ambiguous.
 def segments_uncert(segments):
     for v in segments.values():
         if len(v) != 1:
             return True
     return False
 
+# Keep only those segments corresponding to a certain digit (val is the digit)
 def keep(segment, val):
     result = list(segment)
     for i in segment:
@@ -37,6 +42,7 @@ def keep(segment, val):
             result.remove(i)
     return "".join(result)
 
+# Generate all possible decodings of a segment sequence based on current data.
 def perms(segs, segments):
     if len(segs) == 1:
         for i in segments[segs[0]]:
@@ -46,6 +52,7 @@ def perms(segs, segments):
         for i in perms(segs[1:], segments):
             yield seg + i
 
+# Perform a simplification on digits and segments.
 def step(digits, segments):
     # simplify segments
     for k, v in digits.items():
@@ -60,6 +67,8 @@ def step(digits, segments):
             if perm in rev_lookup.keys():
                 poss.append(rev_lookup[perm])
         digits[segs] = list(sorted(set(poss)))
+    # If an arrangement of segments has an only possible number,
+    # remove that number from other arrangements' possibilities.
     for k, v in digits.items():
         if len(v) == 1:
             continue
@@ -68,6 +77,7 @@ def step(digits, segments):
             if [i] in digits.values():
                 new.remove(i)
         digits[k] = new
+    # Same as above, but for the mapping.
     for k, v in segments.items():
         if len(v) == 1:
             continue
