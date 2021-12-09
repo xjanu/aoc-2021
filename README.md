@@ -27,3 +27,6 @@ For more info, see [The Advent of Code website](https://adventofcode.com/)
 | Part One: | `./diagnostics.py 1 input` |
 | Part Two: | `./diagnostics.py 2 input` |
 | Usage:    | `./diagnostics.py`         |
+
+## Day 4 and up:
+From this day we code competitively: [Leaderboard](https://martinjanu.eu/aoc/)
